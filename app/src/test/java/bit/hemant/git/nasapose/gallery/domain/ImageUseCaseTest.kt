@@ -36,7 +36,6 @@ class ImageUseCaseTest {
                 serviceVersion = dummy,
                 url = dummy,
             )
-            image.id=index
             imageList.add(
                image
             )

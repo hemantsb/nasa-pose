@@ -4,9 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import bit.hemant.git.nasapose.gallery.domain.model.NasaImage
 import bit.hemant.git.nasapose.gallery.domain.usecase.ImagesSetUseCase
+import bit.hemant.git.nasapose.gallery.domain.util.AsyncResult
 import bit.hemant.git.nasapose.store.DataStoreRepoImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -35,12 +37,22 @@ class SplashViewModel @Inject constructor(
 
     fun saveImages(images: List<NasaImage>) {
         viewModelScope.launch {
-            setImagesGetUseCase.invoke(images)
-            notifyStoreImagesSaved()
-            _state.trySend(UiState.NavigateToDashboard)
+            setImagesGetUseCase.invoke(images).collect {
+                handleDbResponse(it)
+            }
+
         }
     }
 
+
+    private fun handleDbResponse(data: AsyncResult<Boolean>) {
+        when (data) {
+            is AsyncResult.Success -> {
+                notifyStoreImagesSaved()
+                _state.trySend(UiState.NavigateToDashboard)
+            }
+        }
+    }
 
     fun checkJsonStored() {
         val imageStored = didImageStored()
