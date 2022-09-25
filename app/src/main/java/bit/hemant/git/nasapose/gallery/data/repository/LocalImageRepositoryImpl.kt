@@ -2,11 +2,12 @@ package bit.hemant.git.nasapose.gallery.data.repository
 
 import bit.hemant.git.nasapose.gallery.data.data_source.local.ImageDao
 import bit.hemant.git.nasapose.gallery.domain.model.NasaImage
-import bit.hemant.git.nasapose.gallery.domain.repository.NasaImageRepository
+import bit.hemant.git.nasapose.gallery.domain.repository.LocalImageRepository
+import javax.inject.Inject
 
-class ImageLocalRepositoryImpl(
+class LocalImageRepositoryImpl @Inject constructor(
     private val dao: ImageDao
-) : NasaImageRepository {
+) : LocalImageRepository {
 
     override suspend fun nasaImages(): List<NasaImage> {
         return dao.allImages()

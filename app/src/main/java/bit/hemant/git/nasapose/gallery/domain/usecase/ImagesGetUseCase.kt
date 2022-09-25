@@ -1,12 +1,13 @@
 package bit.hemant.git.nasapose.gallery.domain.usecase
 
 import bit.hemant.git.nasapose.gallery.domain.model.NasaImage
-import bit.hemant.git.nasapose.gallery.domain.repository.NasaImageRepository
+import bit.hemant.git.nasapose.gallery.domain.repository.LocalImageRepository
 import bit.hemant.git.nasapose.gallery.domain.util.AsyncResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class ImagesGetUseCase(private val localRepositoryImpl: NasaImageRepository) {
+class ImagesGetUseCase @Inject constructor(private val localRepositoryImpl: LocalImageRepository) {
 
     suspend operator fun invoke(): Flow<AsyncResult<List<NasaImage>>> {
         return flow {

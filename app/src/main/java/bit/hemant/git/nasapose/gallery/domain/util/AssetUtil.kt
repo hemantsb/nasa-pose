@@ -8,7 +8,7 @@ import java.io.IOException
 
 object AssetUtil {
 
-    fun getNasaImages(context: Context): List<NasaImage> {
+  suspend  fun getNasaImages(context: Context): List<NasaImage> {
 
         lateinit var jsonString: String
         try {

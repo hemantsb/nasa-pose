@@ -1,10 +1,10 @@
 package bit.hemant.git.nasapose.gallery.data.repository
 
 import bit.hemant.git.nasapose.gallery.domain.model.NasaImage
-import bit.hemant.git.nasapose.gallery.domain.repository.NasaImageRepository
+import bit.hemant.git.nasapose.gallery.domain.repository.LocalImageRepository
 
 
-class FakeImageLocalRepositoryTest : NasaImageRepository {
+class FakeImageLocalRepositoryTest : LocalImageRepository {
 
     private var repos = mutableListOf<NasaImage>()
 

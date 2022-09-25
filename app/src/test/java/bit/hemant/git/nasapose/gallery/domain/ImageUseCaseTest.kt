@@ -2,7 +2,7 @@ package bit.hemant.git.nasapose.gallery.domain
 
 import bit.hemant.git.nasapose.gallery.data.repository.FakeImageLocalRepositoryTest
 import bit.hemant.git.nasapose.gallery.domain.model.NasaImage
-import bit.hemant.git.nasapose.gallery.domain.repository.NasaImageRepository
+import bit.hemant.git.nasapose.gallery.domain.repository.LocalImageRepository
 import bit.hemant.git.nasapose.gallery.domain.usecase.ImagesGetUseCase
 import bit.hemant.git.nasapose.gallery.domain.util.AsyncResult
 import kotlinx.coroutines.flow.collect
@@ -13,7 +13,7 @@ import org.junit.Test
 class ImageUseCaseTest {
 
 
-    private lateinit var localRepository: NasaImageRepository
+    private lateinit var localRepository: LocalImageRepository
     private lateinit var localUseCase: ImagesGetUseCase
 
 
