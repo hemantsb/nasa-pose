@@ -9,8 +9,11 @@ interface ImageDao {
     @Query("SELECT * from nasaimage")
     suspend fun allImages(): List<NasaImage>
 
+    @Query("SELECT * from nasaimage where title=:title")
+    suspend fun image(title: String): NasaImage
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRepos(repos: List<NasaImage>)
+    suspend fun insert(repos: List<NasaImage>)
 
     @Delete
     suspend fun delete(repo: NasaImage)

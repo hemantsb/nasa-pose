@@ -4,5 +4,6 @@ import bit.hemant.git.nasapose.gallery.domain.model.NasaImage
 
 interface NasaImageRepository {
     suspend fun nasaImages(): List<NasaImage>
+    suspend fun saveAllImages(images: List<NasaImage>)
     suspend fun imageDetail(imageName: String): NasaImage
 }
