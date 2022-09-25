@@ -17,5 +17,5 @@ data class NasaImage(
 ) {
 
     @PrimaryKey(autoGenerate = true)
-    val id: Int? = null
+    var id: Int? = null
 }
