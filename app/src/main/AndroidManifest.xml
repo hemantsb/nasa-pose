@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name="bit.hemant.git.NasaPoseApp"
         android:allowBackup="true"
@@ -29,7 +31,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".gallery.presentation.DashboardActivity"
             android:exported="true"
             android:theme="@style/Theme.NasaPose">
             <intent-filter>

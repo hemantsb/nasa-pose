@@ -6,16 +6,18 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import bit.hemant.git.nasapose.MainActivity
 import bit.hemant.git.nasapose.gallery.domain.util.AssetUtil
+import bit.hemant.git.nasapose.gallery.presentation.DashboardActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+@ExperimentalComposeUiApi
+@ExperimentalStdlibApi
 @SuppressLint("CustomSplashScreen")
 @AndroidEntryPoint
 class SplashActivity : ComponentActivity() {
@@ -56,7 +58,7 @@ class SplashActivity : ComponentActivity() {
 
 
     private fun navigateToMainActivity() {
-        val intent = Intent(this@SplashActivity, MainActivity::class.java)
+        val intent = Intent(this@SplashActivity, DashboardActivity::class.java)
         startActivity(intent)
         finish()
     }
