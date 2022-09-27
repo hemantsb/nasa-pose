@@ -10,25 +10,33 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import bit.hemant.git.nasapose.gallery.domain.model.NasaImage
 
+const val MAX_CELLS = 2
+
 @Composable
 fun ImageList(
     loading: Boolean,
     nasaImages: List<NasaImage>,
+    onSelect: (String) -> Unit
 ) {
     Box(
         modifier = Modifier
             .background(color = MaterialTheme.colors.surface)
+
     ) {
         if (loading && nasaImages.isEmpty()) {
             // Add default screen
         } else if (nasaImages.isEmpty()) {
             // There's nothing here
         } else {
-            LazyVerticalGrid(columns = GridCells.Fixed(2)) {
+            LazyVerticalGrid(columns = GridCells.Fixed(MAX_CELLS)) {
                 itemsIndexed(
                     items = nasaImages
                 ) { index, nasaImage ->
-                    NasaImageView(url = nasaImage.url, contentDescription = nasaImage.title)
+                    NasaImageView(
+                        url = nasaImage.url,
+                        contentDescription = nasaImage.title,
+                        onSelect
+                    )
                 }
             }
         }

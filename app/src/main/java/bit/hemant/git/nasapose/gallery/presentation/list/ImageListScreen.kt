@@ -16,6 +16,7 @@ fun ImageListScreen(
     ImageList(
         loading = nasaImagesState.isLoading,
         nasaImages = nasaImagesState.nasaImages,
+        onSelect = onSelect
     )
 
 

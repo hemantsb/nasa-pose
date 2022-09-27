@@ -6,9 +6,13 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.HiltViewModelFactory
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import bit.hemant.git.nasapose.gallery.presentation.detail.ImageDetailScreen
+import bit.hemant.git.nasapose.gallery.presentation.detail.ImageDetailViewModel
 import bit.hemant.git.nasapose.gallery.presentation.list.ImageListScreen
 import bit.hemant.git.nasapose.gallery.presentation.list.ImageListViewModel
 
@@ -25,30 +29,28 @@ fun Navigation() {
             val viewModel: ImageListViewModel =
                 viewModel(modelClass = ImageListViewModel::class.java, factory = factory)
             ImageListScreen(
-                nasaImagesState = viewModel.state.value,
-                onSelect = viewModel::onImageClick
+                nasaImagesState = viewModel.state.value
             )
-//            {
-//                navController.navigate(Screen.ImageDetail.route + "/$it")
-//            }
+            {
+                navController.navigate(Screen.ImageDetail.route + "/$it")
+            }
         }
 
-//        composable(
-//            route = Screen.ImageDetail.route + "/{nasaImagesId}",
-//            arguments = listOf(navArgument("nasaImagesId") {
-//                type = NavType.IntType
-//            })
-//        ) { navBackStackEntry ->
-//            val factory = HiltViewModelFactory(LocalContext.current, navBackStackEntry)
-//            val viewModel: RecipeDetailsViewModel = viewModel<RecipeDetailsViewModel>(
-//                modelClass = RecipeDetailsViewModel::class.java,
-//                factory = factory
-//            )
-//            bit.hemant.kmmfood2fork.android.presentation.nasaImages_detail.RecipeDetailScreen(
-//                state = viewModel.state.value,
-//                onTriggerEvent = viewModel::onTriggerEvent
-//            )
-//        }
+        composable(
+            route = Screen.ImageDetail.route + "/{imageTitle}",
+            arguments = listOf(navArgument("imageTitle") {
+                type = NavType.StringType
+            })
+        ) { navBackStackEntry ->
+            val factory = HiltViewModelFactory(LocalContext.current, navBackStackEntry)
+            val viewModel: ImageDetailViewModel = viewModel<ImageDetailViewModel>(
+                modelClass = ImageDetailViewModel::class.java,
+                factory = factory
+            )
+            ImageDetailScreen(
+                nasaImagesState = viewModel.state.value
+            )
+        }
     }
 
 }
