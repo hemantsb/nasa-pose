@@ -38,7 +38,7 @@ fun NasaImageView(
                         .fillMaxWidth()
                         .height(RECIPE_IMAGE_HEIGHT.dp)
                 ) {
-
+                    LoadingShimmer(imageHeight = RECIPE_IMAGE_HEIGHT.dp)
                 }
             }
         }
